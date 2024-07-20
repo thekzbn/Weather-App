@@ -122,6 +122,7 @@ body{
     }
     .card{
         padding: 32px;
+        border-radius: 0%;
         width: 100%;
     }
     .weatherIcon{
