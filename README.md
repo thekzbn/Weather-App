@@ -1,7 +1,3 @@
-Here's a README template for your Weather App:
-
----
-
 # Weather App
 
 Welcome to the Weather App! This application lets users get real-time weather information for any location, offering a sleek and user-friendly interface with dynamic features.
@@ -71,7 +67,3 @@ Contributions are welcome! If you'd like to improve this project, please fork th
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-This template should be a good starting point. Feel free to customize it according to your project's specifics!
