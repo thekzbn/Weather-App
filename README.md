@@ -28,37 +28,28 @@ The Weather App provides accurate and up-to-date weather information for cities 
 
 To get started with the Weather App, follow these steps:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/KingZingBoss/weather-app.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd weather-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
+1. Clone the repository:  
+   ```git clone https://github.com/thekzbn/weather-app.git```
+2. Navigate to the project directory:  
+   ```cd weather-app```
+3. Open the `index.html` file in your browser to start using the app.
+
+> Note: This project uses only HTML, CSS, and JavaScript. No build tools or package managers are required.
 
 ## Usage
 
-Once the app is running, you can search for any location using the search bar. The app will display current weather details and the upcoming forecast for the selected location.
+Once the app is opened in your browser, you can search for any location using the search bar. The app will display current weather details and the upcoming forecast for the selected location.
 
 ## Technologies Used
 
-- **React**: JavaScript library for building user interfaces.
-- **Bootstrap**: Front-end framework for responsive design.
-- **Axios**: Promise-based HTTP client for making API requests.
-- **OpenWeatherMap API**: Source of the weather data.
+- `HTML`: Structure and markup of the application.
+- `CSS`: Styling and responsive design.
+- `JavaScript`: Core logic and dynamic behavior.
+- `OpenWeatherMap API`: Source of the weather data.
 
 ## APIs
 
-This app integrates with the [OpenWeatherMap API](https://openweathermap.org/) to fetch weather data. You'll need to sign up for an API key from OpenWeatherMap and include it in your environment variables.
+This app integrates with the [OpenWeatherMap API](https://openweathermap.org/) to fetch weather data. You'll need to sign up for an API key from OpenWeatherMap and include it in your code or as an environment variable (if using server-side logic).
 
 ## Contributing
 
@@ -66,4 +57,4 @@ Contributions are welcome! If you'd like to improve this project, please fork th
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
