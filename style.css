@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 :root {
@@ -22,10 +22,15 @@
 }
 
 * {
-    margin: 0;
+	font-family: "Inter Tight", "Inter","Poppins","Segoe UI Variable Display", "Segoe UI", Inter, sans-serif;
+	font-weight: 400;
+      margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+	box-sizing: border-box;
+	transition: all 0.5s cubic-bezier(0.57, -0.01, 0.21, 0.89);
+	text-decoration: none;
+	outline: none;
+	border-radius: 1rem;
 }
 
 body {
@@ -35,7 +40,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 0;
 }
 
 .container {
@@ -76,6 +81,7 @@ body {
     color: var(--text-color);
     font-weight: 400;
     font-family: 'Courier New', monospace;
+    border-radius: 0;
 }
 
 .temp-toggle,
@@ -85,7 +91,6 @@ body {
     color: var(--bg-color);
     padding: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,8 +125,6 @@ body {
     color: var(--input-text);
     border: 2px solid var(--border-color);
     margin-bottom: 15px;
-    outline: none;
-    transition: all 0.3s ease;
 }
 
 .search-section input::placeholder {
@@ -141,7 +144,6 @@ body {
     color: var(--bg-color);
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
