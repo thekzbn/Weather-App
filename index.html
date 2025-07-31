@@ -1,94 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get accurate and reliable weather information for any city in the world.">
-    <meta name="keywords" content="weather, weather app, weather application, weather information, weather data, kingzingbossnoreos">
-    <meta name="author" content="KingZingBossNoreos">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="revisit-after" content="7 days">
-    <meta name="distribution" content="Global">
-    <meta name="rating" content="General">
-    <meta name="language" content="EN">
-    <meta name="copyright" content="KingZingBossNoreos">
-    <meta name="subject" content="Weather Information">
-    <meta name="abstract" content="Get accurate and reliable weather information for any city in the world.">
-    <meta name="topic" content="Weather">
-    <meta name="summary" content="Get accurate and reliable weather information for any city in the world.">
-    <meta name="Classification" content="Weather">
-    <meta name="owner" content="KingZingBossNoreos">
-    <meta name="coverage" content="Worldwide">
-    <meta name="distribution" content="Global">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="touch-callout" content="default">
-    <meta name="theme-color" content="#000000">
-    <link rel="canonical" href="https://kzbn.com.ng/">
-    <title>
-        Weather Application
-    </title>
-    <link rel="shortcut icon" href="assets/images/weather-svgrepo-com.svg" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get accurate and reliable weather information for any city in the world." />
+  <meta name="keywords" content="weather, weather app, weather application, weather information, weather data, kingzingbossnoreos" />
+  <meta name="author" content="thekzbn" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="distribution" content="Global" />
+  <meta name="rating" content="General" />
+  <meta name="language" content="EN" />
+  <meta name="copyright" content="thekzbn" />
+  <meta name="subject" content="Weather Information" />
+  <meta name="abstract" content="Get accurate and reliable weather information for any city in the world." />
+  <meta name="topic" content="Weather" />
+  <meta name="summary" content="Get accurate and reliable weather information for any city in the world." />
+  <meta name="Classification" content="Weather" />
+  <meta name="owner" content="thekzbn" />
+  <meta name="coverage" content="Worldwide" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="touch-callout" content="default" />
+  <meta name="theme-color" content="#000000" />
+
+  <title>Weather App | thekzbn.name.ng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
-    <div class="card">
-        <div class="search">
-            <input type="text" spellcheck="false" placeholder="Search for a country...">
-            <button>
-                <img src="assets/images/search.svg" alt="">
-            </button>
-        </div>
-        <div class="error">
-            Invalid city name
-        </div>
-        <div class="weather">
-            <img src="assets/images/rain.png" class="weatherIcon" alt="">
-            <h1 class="temp">
+  <main>
+    <section class="weather-card">
+      <h1>Weather App</h1>
+      <input type="text" id="cityInput" placeholder="Enter a city name" />
+      <button id="getWeatherBtn">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <div id="weatherResult"></div>
+    </section>
+    <button id="themeToggle" class="theme-toggle">
+      <span class="material-symbols-outlined">light_mode</span>
+    </button>
+  </main>
 
-            </h1>
-            <h2 class="city">
-
-            </h2>
-            <div class="details">
-                <div class="col">
-                    <img src="assets/images/humidity.png" alt="">
-                    <div>
-                        <p class="humidity">
-
-                        </p>
-                        <p>
-                            Humidity
-                        </p>
-                    </div>
-                </div>
-                <br class="hide-small">
-                <div class="col">
-                    <img src="assets/images/wind.png" alt="">
-                    <div>
-                        <p class="wind">
-
-                        </p>
-                        <p>Wind Speed</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <script src="assets/js/script.js"></script>
 </body>
-<script src="assets/js/script.js"></script>
 </html>
-<!--
-██╗░░██╗██╗███╗░░██╗░██████╗░███████╗██╗███╗░░██╗░██████╗░██████╗░░█████╗░░██████╗░██████╗███╗░░██╗░█████╗░██████╗░███████╗░█████╗░░██████╗
-██║░██╔╝██║████╗░██║██╔════╝░╚════██║██║████╗░██║██╔════╝░██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝
-█████═╝░██║██╔██╗██║██║░░██╗░░░███╔═╝██║██╔██╗██║██║░░██╗░██████╦╝██║░░██║╚█████╗░╚█████╗░██╔██╗██║██║░░██║██████╔╝█████╗░░██║░░██║╚█████╗░
-██╔═██╗░██║██║╚████║██║░░╚██╗██╔══╝░░██║██║╚████║██║░░╚██╗██╔══██╗██║░░██║░╚═══██╗░╚═══██╗██║╚████║██║░░██║██╔══██╗██╔══╝░░██║░░██║░╚═══██╗
-██║░╚██╗██║██║░╚███║╚██████╔╝███████╗██║██║░╚███║╚██████╔╝██████╦╝╚█████╔╝██████╔╝██████╔╝██║░╚███║╚█████╔╝██║░░██║███████╗╚█████╔╝██████╔╝
-╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░╚══════╝╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░░╚════╝░╚═════╝░╚═════╝░╚═╝░░╚══╝░╚════╝░╚═╝░░╚═╝╚══════╝░╚════╝░╚═════╝░
--->
