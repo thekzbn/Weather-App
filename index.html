@@ -31,14 +31,27 @@
     <meta name="theme-color" content="#000000">
     <link rel="canonical" href="https://weather.thekzbn.name.ng/">
     <title>Weather - thekzbn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
+        <div class="header">
+            <h1>Weather</h1>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="material-symbols-outlined">light_mode</span>
+            </button>
+        </div>
+        
         <div class="search-section">
             <input type="text" spellcheck="false" placeholder="Enter city name...">
-            <button type="button">Search</button>
+            <button type="button">
+                <span class="material-symbols-outlined">search</span>
+            </button>
         </div>
         
         <div class="error">
@@ -47,21 +60,21 @@
         
         <div class="weather">
             <div class="weather-icon">
-                <img src="https://weather.thekzbn.name.ng/assets/images/rain.png" class="weatherIcon" alt="Weather Icon">
+                <span class="material-symbols-outlined weather-symbol">sunny</span>
             </div>
             <h1 class="temp"></h1>
             <h2 class="city"></h2>
             
             <div class="details">
                 <div class="detail-item">
-                    <img src="https://weather.thekzbn.name.ng/assets/images/humidity.png" alt="Humidity">
+                    <span class="material-symbols-outlined">humidity_percentage</span>
                     <div class="detail-text">
                         <p class="humidity"></p>
                         <p>Humidity</p>
                     </div>
                 </div>
                 <div class="detail-item">
-                    <img src="https://weather.thekzbn.name.ng/assets/images/wind.png" alt="Wind Speed">
+                    <span class="material-symbols-outlined">air</span>
                     <div class="detail-text">
                         <p class="wind"></p>
                         <p>Wind Speed</p>

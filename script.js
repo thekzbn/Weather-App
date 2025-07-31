@@ -3,7 +3,9 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&q=";
 const mainPage = "https://thekzbn.name.ng";
 const searchBox = document.querySelector(".search-section input");
 const searchBtn = document.querySelector(".search-section button");
-const weatherIcon = document.querySelector(".weatherIcon");
+const weatherSymbol = document.querySelector(".weather-symbol");
+const themeToggle = document.querySelector(".theme-toggle");
+const themeIcon = document.querySelector(".theme-toggle .material-symbols-outlined");
 
 /**
  * Checks the weather for a given city.
@@ -50,30 +52,30 @@ async function checkWeather(city) {
             // Set the weather icon based on the weather
             switch (data.weather[0].main) {
                 case "Clouds":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/clouds.png";
+                    weatherSymbol.textContent = "cloud";
                     break;
                 case "Clear":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/clear.png";
+                    weatherSymbol.textContent = "sunny";
                     break;
                 case "Rain":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/rain.png";
+                    weatherSymbol.textContent = "rainy";
                     break;
                 case "Drizzle":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/drizzle.png";
+                    weatherSymbol.textContent = "rainy";
                     break;
                 case "Mist":
                 case "Fog":
                 case "Haze":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/mist.png";
+                    weatherSymbol.textContent = "foggy";
                     break;
                 case "Snow":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/snow.png";
+                    weatherSymbol.textContent = "ac_unit";
                     break;
                 case "Thunderstorm":
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/thunderstorm.png";
+                    weatherSymbol.textContent = "thunderstorm";
                     break;
                 default:
-                    weatherIcon.src = "https://weather.thekzbn.name.ng/assets/images/clear.png";
+                    weatherSymbol.textContent = "sunny";
             }
 
             // Show the weather data on the page
@@ -98,6 +100,31 @@ searchBox.addEventListener("keyup", (e) => {
 searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value.trim());
 });
+
+// Theme toggle functionality
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    themeIcon.textContent = newTheme === 'light' ? 'dark_mode' : 'light_mode';
+    
+    // Save theme preference
+    localStorage.setItem('theme', newTheme);
+}
+
+// Load saved theme
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeIcon.textContent = savedTheme === 'light' ? 'dark_mode' : 'light_mode';
+}
+
+// Theme toggle event listener
+themeToggle.addEventListener('click', toggleTheme);
+
+// Initialize theme on page load
+loadTheme();
 
 // Initialize with a default city or leave empty
 // checkWeather("Lagos");
