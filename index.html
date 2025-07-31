@@ -41,10 +41,18 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Weather</h1>
-            <button class="theme-toggle" aria-label="Toggle theme">
-                <span class="material-symbols-outlined">light_mode</span>
-            </button>
+            <div class="header-left">
+                <h1>Weather</h1>
+                <div class="clock" id="clock"></div>
+            </div>
+            <div class="header-right">
+                <button class="temp-toggle" aria-label="Toggle temperature unit">
+                    <span class="temp-unit">°C</span>
+                </button>
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined">light_mode</span>
+                </button>
+            </div>
         </div>
         
         <div class="search-section">

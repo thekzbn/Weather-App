@@ -48,16 +48,37 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 40px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .header h1 {
     font-size: 32px;
     font-weight: 600;
     color: var(--accent-color);
+    margin-bottom: 5px;
 }
 
+.clock {
+    font-size: 16px;
+    color: var(--text-color);
+    font-weight: 400;
+    font-family: 'Courier New', monospace;
+}
+
+.temp-toggle,
 .theme-toggle {
     background: var(--accent-color);
     border: 2px solid var(--accent-color);
@@ -68,8 +89,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 40px;
+    height: 40px;
 }
 
+.temp-toggle:hover,
 .theme-toggle:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
@@ -77,6 +101,11 @@ body {
 
 .theme-toggle .material-symbols-outlined {
     font-size: 24px;
+}
+
+.temp-toggle .temp-unit {
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .search-section {
@@ -202,12 +231,35 @@ body {
         margin-bottom: 30px;
     }
     
+    .header-left {
+        align-items: center;
+    }
+    
+    .header-right {
+        gap: 8px;
+    }
+    
     .header h1 {
         font-size: 28px;
     }
     
+    .clock {
+        font-size: 14px;
+    }
+    
+    .temp-toggle,
+    .theme-toggle {
+        min-width: 36px;
+        height: 36px;
+        padding: 6px;
+    }
+    
     .theme-toggle .material-symbols-outlined {
         font-size: 20px;
+    }
+    
+    .temp-toggle .temp-unit {
+        font-size: 12px;
     }
     
     .search-section input,

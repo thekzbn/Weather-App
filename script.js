@@ -6,6 +6,13 @@ const searchBtn = document.querySelector(".search-section button");
 const weatherSymbol = document.querySelector(".weather-symbol");
 const themeToggle = document.querySelector(".theme-toggle");
 const themeIcon = document.querySelector(".theme-toggle .material-symbols-outlined");
+const tempToggle = document.querySelector(".temp-toggle");
+const tempUnitDisplay = document.querySelector(".temp-unit");
+const clockElement = document.getElementById("clock");
+
+// Temperature unit state
+let currentTempUnit = 'celsius'; // celsius, fahrenheit, kelvin
+let currentTempValue = null; // Store the Kelvin value from API
 
 /**
  * Checks the weather for a given city.
@@ -43,9 +50,12 @@ async function checkWeather(city) {
             // Log the data to the console
             console.log(data);
 
+            // Store temperature in Kelvin for unit conversion
+            currentTempValue = data.main.temp;
+            
             // Set the weather data on the page
             document.querySelector(".city").innerHTML = data.name;
-            document.querySelector(".temp").innerHTML = Math.round(data.main.temp - 273.15) + "°C";
+            document.querySelector(".temp").innerHTML = formatTemperature(currentTempValue, currentTempUnit);
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
             document.querySelector(".wind").innerHTML = Math.round(data.wind.speed * 3.6) + " km/h";
 
@@ -136,8 +146,85 @@ function loadTheme() {
 // Theme toggle event listener
 themeToggle.addEventListener('click', toggleTheme);
 
-// Initialize theme on page load
+// Temperature conversion functions
+function formatTemperature(kelvin, unit) {
+    if (!kelvin) return '';
+    
+    let temp, symbol;
+    
+    switch(unit) {
+        case 'fahrenheit':
+            temp = Math.round((kelvin - 273.15) * 9/5 + 32);
+            symbol = '°F';
+            break;
+        case 'kelvin':
+            temp = Math.round(kelvin);
+            symbol = 'K';
+            break;
+        case 'celsius':
+        default:
+            temp = Math.round(kelvin - 273.15);
+            symbol = '°C';
+            break;
+    }
+    
+    return temp + symbol;
+}
+
+// Temperature unit toggle functionality
+function toggleTempUnit() {
+    const units = ['celsius', 'fahrenheit', 'kelvin'];
+    const symbols = ['°C', '°F', 'K'];
+    
+    const currentIndex = units.indexOf(currentTempUnit);
+    const nextIndex = (currentIndex + 1) % units.length;
+    
+    currentTempUnit = units[nextIndex];
+    tempUnitDisplay.textContent = symbols[nextIndex];
+    
+    // Update temperature display if we have weather data
+    if (currentTempValue) {
+        document.querySelector(".temp").innerHTML = formatTemperature(currentTempValue, currentTempUnit);
+    }
+    
+    // Save preference
+    localStorage.setItem('tempUnit', currentTempUnit);
+}
+
+// Load saved temperature unit
+function loadTempUnit() {
+    const savedUnit = localStorage.getItem('tempUnit') || 'celsius';
+    const symbols = { celsius: '°C', fahrenheit: '°F', kelvin: 'K' };
+    
+    currentTempUnit = savedUnit;
+    tempUnitDisplay.textContent = symbols[savedUnit];
+}
+
+// Clock functionality
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', { 
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    clockElement.textContent = timeString;
+}
+
+// Initialize clock and update every second
+function startClock() {
+    updateClock();
+    setInterval(updateClock, 1000);
+}
+
+// Event listeners
+tempToggle.addEventListener('click', toggleTempUnit);
+
+// Initialize everything on page load
 loadTheme();
+loadTempUnit();
+startClock();
 
 // Initialize with a default city or leave empty
 // checkWeather("Lagos");
