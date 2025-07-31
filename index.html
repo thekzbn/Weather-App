@@ -3,50 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Get accurate and reliable weather information for any city in the world." />
-  <meta name="keywords" content="weather, weather app, weather application, weather information, weather data, kingzingbossnoreos" />
-  <meta name="author" content="thekzbn" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="revisit-after" content="7 days" />
-  <meta name="distribution" content="Global" />
-  <meta name="rating" content="General" />
-  <meta name="language" content="EN" />
-  <meta name="copyright" content="thekzbn" />
-  <meta name="subject" content="Weather Information" />
-  <meta name="abstract" content="Get accurate and reliable weather information for any city in the world." />
-  <meta name="topic" content="Weather" />
-  <meta name="summary" content="Get accurate and reliable weather information for any city in the world." />
-  <meta name="Classification" content="Weather" />
-  <meta name="owner" content="thekzbn" />
-  <meta name="coverage" content="Worldwide" />
-  <meta name="HandheldFriendly" content="true" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="touch-callout" content="default" />
-  <meta name="theme-color" content="#000000" />
+  <title>Weather App || thekzbn</title>
 
-  <title>Weather App | thekzbn.name.ng</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Get accurate and reliable weather information for any city in the world.">
+  <meta name="keywords" content="weather, weather app, weather application, weather information, weather data, thekzbn, kingzingbossnoreos">
+  <meta name="author" content="thekzbn">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="revisit-after" content="7 days">
+  <meta name="distribution" content="Global">
+  <meta name="rating" content="General">
+  <meta name="language" content="EN">
+  <meta name="copyright" content="thekzbn">
+  <meta name="subject" content="Weather Information">
+  <meta name="abstract" content="Get accurate and reliable weather information for any city in the world.">
+  <meta name="topic" content="Weather">
+  <meta name="summary" content="Get accurate and reliable weather information for any city in the world.">
+  <meta name="Classification" content="Weather">
+  <meta name="owner" content="thekzbn">
+  <meta name="coverage" content="Worldwide">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="touch-callout" content="default">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- Google Material Symbols -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=https://thekzbn.name.ng" />
+  </noscript>
+
   <main>
-    <section class="weather-card">
-      <h1>Weather App</h1>
-      <input type="text" id="cityInput" placeholder="Enter a city name" />
-      <button id="getWeatherBtn">
+    <header>
+      <h1>weather app</h1>
+      <button id="themeToggle" aria-label="Toggle Theme">
+        <span class="material-symbols-outlined">light_mode</span>
+      </button>
+    </header>
+
+    <section id="weatherApp">
+      <input type="text" id="locationInput" placeholder="Enter a city" />
+      <button id="getWeather">
         <span class="material-symbols-outlined">search</span>
       </button>
-      <div id="weatherResult"></div>
+      <div id="weatherDisplay"></div>
     </section>
-    <button id="themeToggle" class="theme-toggle">
-      <span class="material-symbols-outlined">light_mode</span>
-    </button>
   </main>
 
+  <!-- JS -->
   <script src="assets/js/script.js"></script>
 </body>
 </html>
