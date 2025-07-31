@@ -1,69 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather App || thekzbn</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Get accurate and reliable weather information for any city in the world.">
-  <meta name="keywords" content="weather, weather app, weather application, weather information, weather data, thekzbn, kingzingbossnoreos">
-  <meta name="author" content="thekzbn">
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <meta name="revisit-after" content="7 days">
-  <meta name="distribution" content="Global">
-  <meta name="rating" content="General">
-  <meta name="language" content="EN">
-  <meta name="copyright" content="thekzbn">
-  <meta name="subject" content="Weather Information">
-  <meta name="abstract" content="Get accurate and reliable weather information for any city in the world.">
-  <meta name="topic" content="Weather">
-  <meta name="summary" content="Get accurate and reliable weather information for any city in the world.">
-  <meta name="Classification" content="Weather">
-  <meta name="owner" content="thekzbn">
-  <meta name="coverage" content="Worldwide">
-  <meta name="HandheldFriendly" content="true">
-  <meta name="MobileOptimized" content="320">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="touch-callout" content="default">
-  <meta name="theme-color" content="#000000">
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" />
-
-  <!-- Google Material Symbols -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get accurate and reliable weather information for any city in the world.">
+    <meta name="keywords" content="weather, weather app, weather application, weather information, weather data, thekzbn">
+    <meta name="author" content="thekzbn">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <meta name="language" content="EN">
+    <meta name="copyright" content="thekzbn">
+    <meta name="subject" content="Weather Information">
+    <meta name="abstract" content="Get accurate and reliable weather information for any city in the world.">
+    <meta name="topic" content="Weather">
+    <meta name="summary" content="Get accurate and reliable weather information for any city in the world.">
+    <meta name="Classification" content="Weather">
+    <meta name="owner" content="thekzbn">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="touch-callout" content="default">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://weather.thekzbn.name.ng/">
+    <title>Weather - thekzbn</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=https://thekzbn.name.ng" />
-  </noscript>
-
-  <main>
-    <header>
-      <h1>weather app</h1>
-      <button id="themeToggle" aria-label="Toggle Theme">
-        <span class="material-symbols-outlined">light_mode</span>
-      </button>
-    </header>
-
-    <section id="weatherApp">
-      <input type="text" id="locationInput" placeholder="Enter a city" />
-      <button id="getWeather">
-        <span class="material-symbols-outlined">search</span>
-      </button>
-      <div id="weatherDisplay"></div>
-    </section>
-  </main>
-
-  <!-- JS -->
-  <script src="assets/js/script.js"></script>
+    <div class="container">
+        <div class="search-section">
+            <input type="text" spellcheck="false" placeholder="Enter city name...">
+            <button type="button">Search</button>
+        </div>
+        
+        <div class="error">
+            Invalid city name
+        </div>
+        
+        <div class="weather">
+            <div class="weather-icon">
+                <img src="https://weather.thekzbn.name.ng/assets/images/rain.png" class="weatherIcon" alt="Weather Icon">
+            </div>
+            <h1 class="temp"></h1>
+            <h2 class="city"></h2>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <img src="https://weather.thekzbn.name.ng/assets/images/humidity.png" alt="Humidity">
+                    <div class="detail-text">
+                        <p class="humidity"></p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <img src="https://weather.thekzbn.name.ng/assets/images/wind.png" alt="Wind Speed">
+                    <div class="detail-text">
+                        <p class="wind"></p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
