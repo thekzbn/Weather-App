@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 :root {
@@ -77,8 +77,8 @@ body {
 .clock {
     font-size: 16px;
     color: var(--text-color);
-    font-weight: 400;
-    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    font-family: 'Space Grotesk', monospace;
 }
 
 .temp-toggle,
@@ -193,8 +193,8 @@ body {
 .city-time {
     font-size: 18px;
     color: var(--accent-color);
-    font-weight: 300;
-    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    font-family: 'Space Grotesk', monospace;
     margin-bottom: 40px;
 }
 
