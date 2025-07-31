@@ -2,6 +2,8 @@
 
 Welcome to the Weather App! This application lets users get real-time weather information for any location, offering a sleek and user-friendly interface with dynamic features.
 
+**🌐 Live Demo:** [weather.thekzbn.name.ng](https://weather.thekzbn.name.ng)
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -16,6 +18,8 @@ Welcome to the Weather App! This application lets users get real-time weather in
 ## Overview
 
 The Weather App provides accurate and up-to-date weather information for cities worldwide. The app features a clean interface that displays current weather conditions, a 7-day forecast, and more. It’s designed to be responsive and accessible, working seamlessly across various devices.
+
+You can try the live version here: **[weather.thekzbn.name.ng](https://weather.thekzbn.name.ng)**
 
 ## Features
 
