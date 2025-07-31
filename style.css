@@ -30,7 +30,6 @@
 	transition: all 0.5s cubic-bezier(0.57, -0.01, 0.21, 0.89);
 	text-decoration: none;
 	outline: none;
-	border-radius: 1rem;
 }
 
 body {
@@ -40,7 +39,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
 }
 
 .container {
@@ -81,7 +79,6 @@ body {
     color: var(--text-color);
     font-weight: 400;
     font-family: 'Courier New', monospace;
-    border-radius: 0;
 }
 
 .temp-toggle,
@@ -189,8 +186,16 @@ body {
 .city {
     font-size: 32px;
     font-weight: 400;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     color: var(--text-color);
+}
+
+.city-time {
+    font-size: 18px;
+    color: var(--accent-color);
+    font-weight: 300;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 40px;
 }
 
 .details {
@@ -280,6 +285,11 @@ body {
     
     .city {
         font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .city-time {
+        font-size: 16px;
         margin-bottom: 30px;
     }
     

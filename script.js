@@ -13,6 +13,7 @@ const clockElement = document.getElementById("clock");
 // Temperature unit state
 let currentTempUnit = 'celsius'; // celsius, fahrenheit, kelvin
 let currentTempValue = null; // Store the Kelvin value from API
+let cityTimezone = null; // Store the timezone offset for the city
 
 /**
  * Checks the weather for a given city.
@@ -53,11 +54,17 @@ async function checkWeather(city) {
             // Store temperature in Kelvin for unit conversion
             currentTempValue = data.main.temp;
             
+            // Store timezone offset (in seconds)
+            cityTimezone = data.timezone;
+            
             // Set the weather data on the page
             document.querySelector(".city").innerHTML = data.name;
             document.querySelector(".temp").innerHTML = formatTemperature(currentTempValue, currentTempUnit);
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
             document.querySelector(".wind").innerHTML = Math.round(data.wind.speed * 3.6) + " km/h";
+            
+            // Update city time
+            updateCityTime();
 
             // Set the weather icon based on the weather
             switch (data.weather[0].main) {
@@ -212,10 +219,37 @@ function updateClock() {
     clockElement.textContent = timeString;
 }
 
+// City time functionality
+function updateCityTime() {
+    if (!cityTimezone) return;
+    
+    const now = new Date();
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const cityTime = new Date(utc + (cityTimezone * 1000));
+    
+    const timeString = cityTime.toLocaleTimeString('en-US', {
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    
+    const dateString = cityTime.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+    });
+    
+    document.querySelector(".city-time").textContent = `${dateString}, ${timeString}`;
+}
+
 // Initialize clock and update every second
 function startClock() {
     updateClock();
-    setInterval(updateClock, 1000);
+    setInterval(() => {
+        updateClock();
+        updateCityTime(); // Also update city time every second
+    }, 1000);
 }
 
 // Event listeners
