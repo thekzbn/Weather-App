@@ -1,5 +1,6 @@
 const apiKey = "3b65f1bc7b0de2d7df867b6f020ae01f";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&q=";
+const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&q=";
 const mainPage = "https://thekzbn.name.ng";
 const searchBox = document.querySelector(".search-section input");
 const searchBtn = document.querySelector(".search-section button");
@@ -60,11 +61,61 @@ async function checkWeather(city) {
             // Set the weather data on the page
             document.querySelector(".city").innerHTML = data.name;
             document.querySelector(".temp").innerHTML = formatTemperature(currentTempValue, currentTempUnit);
+            
+            // Basic weather details
+            const feelsLikeElement = document.querySelector(".feels-like");
+            feelsLikeElement.innerHTML = formatTemperature(data.main.feels_like, currentTempUnit);
+            feelsLikeElement.dataset.kelvin = data.main.feels_like;
             document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
             document.querySelector(".wind").innerHTML = Math.round(data.wind.speed * 3.6) + " km/h";
+            document.querySelector(".pressure").innerHTML = data.main.pressure + " hPa";
+            document.querySelector(".visibility").innerHTML = (data.visibility / 1000).toFixed(1) + " km";
+            document.querySelector(".clouds").innerHTML = data.clouds.all + "%";
+            
+            // Sunrise and sunset times
+            const sunrise = new Date((data.sys.sunrise + cityTimezone) * 1000);
+            const sunset = new Date((data.sys.sunset + cityTimezone) * 1000);
+            document.querySelector(".sunrise").innerHTML = sunrise.toLocaleTimeString('en-US', {
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.querySelector(".sunset").innerHTML = sunset.toLocaleTimeString('en-US', {
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Precipitation data (show only if present)
+            const precipitationDiv = document.querySelector(".precipitation");
+            const rainInfo = document.querySelector(".rain-info");
+            const snowInfo = document.querySelector(".snow-info");
+            
+            let showPrecipitation = false;
+            
+            if (data.rain && data.rain["1h"]) {
+                document.querySelector(".rain-volume").innerHTML = data.rain["1h"] + " mm";
+                rainInfo.style.display = "flex";
+                showPrecipitation = true;
+            } else {
+                rainInfo.style.display = "none";
+            }
+            
+            if (data.snow && data.snow["1h"]) {
+                document.querySelector(".snow-volume").innerHTML = data.snow["1h"] + " mm";
+                snowInfo.style.display = "flex";
+                showPrecipitation = true;
+            } else {
+                snowInfo.style.display = "none";
+            }
+            
+            precipitationDiv.style.display = showPrecipitation ? "flex" : "none";
             
             // Update city time
             updateCityTime();
+            
+            // Fetch 5-day forecast
+            fetchForecast(city);
 
             // Set the weather icon based on the weather
             switch (data.weather[0].main) {
@@ -192,6 +243,13 @@ function toggleTempUnit() {
     // Update temperature display if we have weather data
     if (currentTempValue) {
         document.querySelector(".temp").innerHTML = formatTemperature(currentTempValue, currentTempUnit);
+        // Also update feels like temperature if available
+        const feelsLikeElement = document.querySelector(".feels-like");
+        if (feelsLikeElement && feelsLikeElement.dataset.kelvin) {
+            feelsLikeElement.innerHTML = formatTemperature(parseFloat(feelsLikeElement.dataset.kelvin), currentTempUnit);
+        }
+        // Update forecast temperatures
+        updateForecastTemperatures();
     }
     
     // Save preference
@@ -254,6 +312,95 @@ function startClock() {
 
 // Event listeners
 tempToggle.addEventListener('click', toggleTempUnit);
+
+// Fetch 5-day forecast
+async function fetchForecast(city) {
+    try {
+        const response = await fetch(forecastUrl + city + `&appid=${apiKey}`);
+        if (response.ok) {
+            const data = await response.json();
+            displayForecast(data);
+        }
+    } catch (error) {
+        console.error("Error fetching forecast:", error);
+    }
+}
+
+// Display 5-day forecast
+function displayForecast(data) {
+    const forecastContainer = document.querySelector(".forecast-container");
+    forecastContainer.innerHTML = "";
+    
+    // Get daily forecasts (one per day at 12:00 PM when available)
+    const dailyForecasts = [];
+    const seenDates = new Set();
+    
+    data.list.forEach(item => {
+        const date = new Date(item.dt * 1000);
+        const dateString = date.toDateString();
+        
+        if (!seenDates.has(dateString) && dailyForecasts.length < 5) {
+            dailyForecasts.push(item);
+            seenDates.add(dateString);
+        }
+    });
+    
+    dailyForecasts.forEach(forecast => {
+        const forecastItem = document.createElement("div");
+        forecastItem.className = "forecast-item";
+        
+        const date = new Date(forecast.dt * 1000);
+        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+        const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        
+        const weatherIcon = getWeatherSymbol(forecast.weather[0].main);
+        const highTemp = formatTemperature(forecast.main.temp_max, currentTempUnit);
+        const lowTemp = formatTemperature(forecast.main.temp_min, currentTempUnit);
+        
+        forecastItem.innerHTML = `
+            <div class="forecast-date">${dayName}<br>${monthDay}</div>
+            <span class="material-symbols-outlined forecast-icon">${weatherIcon}</span>
+            <div class="forecast-temps">
+                <div class="forecast-high" data-kelvin="${forecast.main.temp_max}">${highTemp}</div>
+                <div class="forecast-low" data-kelvin="${forecast.main.temp_min}">${lowTemp}</div>
+            </div>
+            <div class="forecast-desc">${forecast.weather[0].description}</div>
+        `;
+        
+        forecastContainer.appendChild(forecastItem);
+    });
+}
+
+// Get weather symbol for forecast
+function getWeatherSymbol(weather) {
+    switch(weather) {
+        case "Clouds": return "cloud";
+        case "Clear": return "sunny";
+        case "Rain": return "rainy";
+        case "Drizzle": return "rainy";
+        case "Mist":
+        case "Fog":
+        case "Haze": return "foggy";
+        case "Snow": return "ac_unit";
+        case "Thunderstorm": return "thunderstorm";
+        default: return "sunny";
+    }
+}
+
+// Update forecast temperatures when unit changes
+function updateForecastTemperatures() {
+    document.querySelectorAll(".forecast-high").forEach(element => {
+        if (element.dataset.kelvin) {
+            element.innerHTML = formatTemperature(parseFloat(element.dataset.kelvin), currentTempUnit);
+        }
+    });
+    
+    document.querySelectorAll(".forecast-low").forEach(element => {
+        if (element.dataset.kelvin) {
+            element.innerHTML = formatTemperature(parseFloat(element.dataset.kelvin), currentTempUnit);
+        }
+    });
+}
 
 // Initialize everything on page load
 loadTheme();
