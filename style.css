@@ -81,6 +81,7 @@ body {
     font-family: 'Space Grotesk', monospace;
 }
 
+.portfolio-link,
 .temp-toggle,
 .theme-toggle {
     background: var(--accent-color);
@@ -95,12 +96,14 @@ body {
     height: 40px;
 }
 
+.portfolio-link:hover,
 .temp-toggle:hover,
 .theme-toggle:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
 }
 
+.portfolio-link .material-symbols-outlined,
 .theme-toggle .material-symbols-outlined {
     font-size: 24px;
 }
@@ -380,6 +383,7 @@ body {
         font-size: 14px;
     }
     
+    .portfolio-link,
     .temp-toggle,
     .theme-toggle {
         min-width: 36px;
@@ -387,6 +391,7 @@ body {
         padding: 6px;
     }
     
+    .portfolio-link .material-symbols-outlined,
     .theme-toggle .material-symbols-outlined {
         font-size: 20px;
     }
