@@ -59,9 +59,9 @@ body {
 }
 
 .theme-toggle {
-    background: none;
+    background: var(--accent-color);
     border: 2px solid var(--accent-color);
-    color: var(--accent-color);
+    color: var(--bg-color);
     padding: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -71,7 +71,7 @@ body {
 }
 
 .theme-toggle:hover {
-    background-color: var(--accent-color);
+    background-color: var(--text-color);
     color: var(--bg-color);
 }
 
@@ -145,7 +145,6 @@ body {
 
 .weather-symbol {
     font-size: 120px !important;
-    color: var(--accent-color);
     display: block;
 }
 
@@ -177,7 +176,6 @@ body {
 
 .detail-item .material-symbols-outlined {
     font-size: 32px;
-    color: var(--accent-color);
 }
 
 .detail-text p:first-child {
