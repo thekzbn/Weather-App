@@ -81,7 +81,31 @@ body {
     font-family: 'Space Grotesk', monospace;
 }
 
-.portfolio-link,
+.portfolio-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 1000;
+}
+
+.portfolio-link:hover {
+    color: var(--accent-color);
+}
+
+.portfolio-link .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.portfolio-text {
+    font-size: 16px;
+}
+
 .temp-toggle,
 .theme-toggle {
     background: var(--accent-color);
@@ -96,14 +120,12 @@ body {
     height: 40px;
 }
 
-.portfolio-link:hover,
 .temp-toggle:hover,
 .theme-toggle:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
 }
 
-.portfolio-link .material-symbols-outlined,
 .theme-toggle .material-symbols-outlined {
     font-size: 24px;
 }
@@ -383,7 +405,20 @@ body {
         font-size: 14px;
     }
     
-    .portfolio-link,
+    .portfolio-link {
+        top: 15px;
+        left: 15px;
+        font-size: 14px;
+    }
+    
+    .portfolio-link .material-symbols-outlined {
+        font-size: 18px;
+    }
+    
+    .portfolio-text {
+        font-size: 14px;
+    }
+    
     .temp-toggle,
     .theme-toggle {
         min-width: 36px;
@@ -391,7 +426,6 @@ body {
         padding: 6px;
     }
     
-    .portfolio-link .material-symbols-outlined,
     .theme-toggle .material-symbols-outlined {
         font-size: 20px;
     }
