@@ -1,87 +1,77 @@
 const apiKey = "3b65f1bc7b0de2d7df867b6f020ae01f";
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&q=";
-const mainPage = "https://kzbn.com.ng";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+const mainPage = "https://thekzbn.name.ng";
 
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
-const weatherIcon = document.querySelector(".weatherIcon")
-/**
- * Checks the weather for a given city.
- * @param {string} city - The city to check the weather for.
- * @returns {Promise<void>} - A promise that resolves when the weather is checked.
- */
+const weatherIcon = document.querySelector(".weatherIcon");
+const errorEl = document.querySelector(".error");
+const weatherEl = document.querySelector(".weather");
+const themeToggle = document.getElementById("themeToggle");
+const icon = themeToggle.querySelector("span");
+
 async function checkWeather(city) {
-    // Fetch the weather data from the API
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+  if (!city) return;
 
-    // Check for an easter egg
-    if (city == "KingZIngBossNoreos") {
-        // Redirect the user to the main page
-        window.location.href = mainPage;
-    } else {
-        // Handle errors
-        if (response.status == 404) {
-            // Show the error message
-            document.querySelector(".error").style.display = "block";
-            // Hide the weather data
-            document.querySelector(".weather").style.display = "none";
-        } else {
-            // Get the weather data from the response
-            const data = await response.json();
+  if (city === "KingZIngBossNoreos") {
+    window.location.href = mainPage;
+    return;
+  }
 
-            // Log the data to the console
-            console.log(data);
-
-            // Set the weather data on the page
-            document.querySelector(".city").innerHTML = data.name;
-            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "K" + " or " + Math.round(data.main.temp - 273) + "°C";
-            document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-            document.querySelector(".wind").innerHTML = data.wind.speed + "km/hr";
-
-            // Set the weather icon based on the weather
-            switch (data.weather[0].main) {
-                case "Clouds":
-                    weatherIcon.src = "assets/images/clouds.png";
-                    break;
-                case "Clear":
-                    weatherIcon.src = "assets/images/clear.png";
-                    break;
-                case "Rain":
-                    weatherIcon.src = "assets/images/rain.png";
-                    break;
-                case "Drizzle":
-                    weatherIcon.src = "assets/images/drizzle.png";
-                    break;
-                case "Mist":
-                    weatherIcon.src = "assets/images/mist.png";
-                    break;
-            }
-
-            // Show the weather data on the page
-            document.querySelector(".weather").style.display = "block";
-            // Hide the error message
-            document.querySelector(".error").style.display = "none";
-        }
+  try {
+    const response = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
+    if (response.status === 404) {
+      errorEl.style.display = "block";
+      weatherEl.style.display = "none";
+      return;
     }
+
+    const data = await response.json();
+
+    document.querySelector(".city").textContent = data.name;
+    const tempK = Math.round(data.main.temp);
+    const tempC = Math.round(data.main.temp - 273.15);
+    document.querySelector(".temp").textContent = `${tempK}K or ${tempC}°C`;
+    document.querySelector(".humidity").textContent = `Humidity: ${data.main.humidity}%`;
+    document.querySelector(".wind").textContent = `Wind: ${data.wind.speed}km/hr`;
+
+    switch (data.weather[0].main) {
+      case "Clouds":
+        weatherIcon.src = "assets/images/clouds.png";
+        break;
+      case "Clear":
+        weatherIcon.src = "assets/images/clear.png";
+        break;
+      case "Rain":
+        weatherIcon.src = "assets/images/rain.png";
+        break;
+      case "Drizzle":
+        weatherIcon.src = "assets/images/drizzle.png";
+        break;
+      case "Mist":
+        weatherIcon.src = "assets/images/mist.png";
+        break;
+      default:
+        weatherIcon.src = "assets/images/unknown.png";
+        break;
+    }
+
+    weatherEl.style.display = "block";
+    errorEl.style.display = "none";
+  } catch (err) {
+    errorEl.style.display = "block";
+    weatherEl.style.display = "none";
+  }
 }
 
-
-
 searchBox.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-        checkWeather(searchBox.value);
-    }
+  if (e.key === "Enter") checkWeather(searchBox.value.trim());
 });
-
 searchBtn.addEventListener("click", () => {
-    checkWeather(searchBox.value);
+  checkWeather(searchBox.value.trim());
 });
 
-checkWeather();
-
-// ██╗░░██╗██╗███╗░░██╗░██████╗░███████╗██╗███╗░░██╗░██████╗░██████╗░░█████╗░░██████╗░██████╗███╗░░██╗░█████╗░██████╗░███████╗░█████╗░░██████╗
-// ██║░██╔╝██║████╗░██║██╔════╝░╚════██║██║████╗░██║██╔════╝░██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝
-// █████═╝░██║██╔██╗██║██║░░██╗░░░███╔═╝██║██╔██╗██║██║░░██╗░██████╦╝██║░░██║╚█████╗░╚█████╗░██╔██╗██║██║░░██║██████╔╝█████╗░░██║░░██║╚█████╗░
-// ██╔═██╗░██║██║╚████║██║░░╚██╗██╔══╝░░██║██║╚████║██║░░╚██╗██╔══██╗██║░░██║░╚═══██╗░╚═══██╗██║╚████║██║░░██║██╔══██╗██╔══╝░░██║░░██║░╚═══██╗
-// ██║░╚██╗██║██║░╚███║╚██████╔╝███████╗██║██║░╚███║╚██████╔╝██████╦╝╚█████╔╝██████╔╝██████╔╝██║░╚███║╚█████╔╝██║░░██║███████╗╚█████╔╝██████╔╝
-// ╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░╚══════╝╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░░╚════╝░╚═════╝░╚═════╝░╚═╝░░╚══╝░╚════╝░╚═╝░░╚═╝╚══════╝░╚════╝░╚═════╝░
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  icon.textContent = document.body.classList.contains("dark") ? "dark_mode" : "light_mode";
+});
