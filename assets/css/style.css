@@ -424,6 +424,8 @@ body {
         min-width: 36px;
         height: 36px;
         padding: 6px;
+	background: var(--bg-color);
+    color:var(--accent-color);
     }
     
     .theme-toggle .material-symbols-outlined {
