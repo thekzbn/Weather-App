@@ -108,9 +108,9 @@ body {
 
 .temp-toggle,
 .theme-toggle {
-    background: var(--accent-color);
-    border: 2px solid var(--accent-color);
-    color: var(--bg-color);
+    background: var(--bg-color);
+    border: none;
+    color: var(--accent-color);
     padding: 8px;
     cursor: pointer;
     display: flex;
@@ -122,7 +122,7 @@ body {
 
 .temp-toggle:hover,
 .theme-toggle:hover {
-    background-color: var(--text-color);
+    background-color: var(--accent-color);
     color: var(--bg-color);
 }
 
